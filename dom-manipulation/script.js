@@ -375,6 +375,9 @@ function syncQuotesWithServer(serverQuotes) {
     // Update the UI to reflect the new quotes
     quotes = updatedLocalQuotes;
     filterQuotes();  // Reapply the current filter
+
+     // Notify user that quotes were synced
+  notifyUserOfSync();
   }
   
   // Start the sync process when the page loads
