@@ -361,6 +361,28 @@ function startPeriodicSync() {
     }, 30000); // Fetch every 30 seconds
   }
 
+// Function to notify the user when quotes are synced
+function notifyUserOfSync() {
+  const notificationElem = document.createElement('div');
+  notificationElem.id = 'syncNotification';
+  notificationElem.style.backgroundColor = '#4CAF50';
+  notificationElem.style.color = '#fff';
+  notificationElem.style.padding = '10px';
+  notificationElem.style.position = 'fixed';
+  notificationElem.style.top = '0';
+  notificationElem.style.width = '100%';
+  notificationElem.style.textAlign = 'center';
+  notificationElem.innerHTML = `<p>Quotes synced with server!</p>`;
+
+  // Append notification to the body
+  document.body.appendChild(notificationElem);
+
+  // Automatically hide notification after 3 seconds
+  setTimeout(() => {
+    document.body.removeChild(notificationElem);
+  }, 3000);
+}
+
   // Function to sync quotes with server data
 function syncQuotesWithServer(serverQuotes) {
     let localQuotes = JSON.parse(localStorage.getItem('quotes')) || [];
@@ -377,7 +399,7 @@ function syncQuotesWithServer(serverQuotes) {
     filterQuotes();  // Reapply the current filter
 
      // Notify user that quotes were synced
-  notifyUserOfSync();
+    notifyUserOfSync();
   }
   
   // Start the sync process when the page loads
