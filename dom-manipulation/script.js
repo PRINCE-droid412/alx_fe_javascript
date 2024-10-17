@@ -324,7 +324,7 @@ document.addEventListener('DOMContentLoaded', loadQuotes);
 const SERVER_URL = "https://jsonplaceholder.typicode.com/posts";
 
 // Function to simulate fetching quotes from the server
-async function fetchServerQuotes() {
+async function fetchQuotesFromServer() {
   try {
     const response = await fetch(SERVER_URL);
     const serverQuotes = await response.json();
@@ -356,7 +356,7 @@ async function postLocalQuotesToServer(localQuotes) {
 // Function to periodically fetch data from the server and sync with local data
 function startPeriodicSync() {
     setInterval(async () => {
-      const serverQuotes = await fetchServerQuotes();
+      const serverQuotes = await fetchQuotesFromServer();
       syncQuotesWithServer(serverQuotes);
     }, 30000); // Fetch every 30 seconds
   }
